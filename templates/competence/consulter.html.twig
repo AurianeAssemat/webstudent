@@ -3,7 +3,11 @@
     <head>
         
     </head>
-    <body>       
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		
 		<h5>PAGE DE CONSULTATION D'UNE COMPETENCE</h5>
  <p>
   <table >
@@ -11,6 +15,18 @@
 	<tr><td>Code : </td><td>{{competence.code}}</td></tr>
 		  <tr><td>Libelle : </td><td>{{competence.libelle}}</td></tr>
 	   <tr><td>Nombre d'étudiants max : </td><td>{{competence.nbetudiantsmax}}</td></tr>
+	   <tr><td>Professeurs enseignants cette competence :</td></tr>
+	   {% for p in competence.professeurs %}
+		<tr>
+			<td>     </td>
+			<td><a href="{{ path('professeurConsulter', { 'id': p.id }) }}">{{ p.nom }}</a></td>
+			<td>{{ p.prenom }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucun professeur.</td>
+		</tr>
+	{% endfor %}
+	   
 	
  </table>
 	

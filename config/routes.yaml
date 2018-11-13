@@ -13,6 +13,9 @@ etudiantConsulter:
 etudiantLister:
     path: /etudiant/lister
     controller: App\Controller\EtudiantController::listerEtudiant
+etudiantModifier:
+    path: /etudiant/modifier/{id}
+    controller: App\Controller\EtudiantController::modifierEtudiant
 maisonAjouter:
     path: /maison/ajouter
     controller: App\Controller\MaisonController::ajouterMaison
@@ -31,6 +34,18 @@ competenceConsulter:
 competenceLister:
     path: /competence/lister
     controller: App\Controller\CompetenceController::listerCompetence
-etudiantModifier:
-    path: /etudiant/modifier/{id}
-    controller: App\Controller\EtudiantController::modifierEtudiant
+professeurAjouter:
+    path: /professeur/ajouter
+    controller: App\Controller\ProfesseurController::ajouterProfesseur
+professeurConsulter:
+    path: /professeur/consulter/{id}
+    controller: App\Controller\ProfesseurController::consulterProfesseur
+professeurLister:
+    path: /professeur/lister
+    controller: App\Controller\ProfesseurController::listerProfesseur
+noteConsulter:
+    path: /note/consulter/{id}
+    controller: App\Controller\NoteController::consulterNote
+noteLister:
+    path: /note/lister
+    controller: App\Controller\NoteController::listerNote

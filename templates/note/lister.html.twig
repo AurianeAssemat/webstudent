@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		LISTE DES NOTES</br></br>
+		<table>
+		{% for n in pNotes %}
+		<tr>
+			<td>{{ n.competence.libelle }}</td>
+			<td>    </td>
+			<td>{{n.etudiant.nom}}</td>
+			<td>    </td>
+			<td><a href="{{ path('noteConsulter', { 'id': n.id }) }}"></a>{{ n.note }}</td>
+	{% else %}
+		<tr>
+		<td>Aucune note n'a été trouvée.</td>
+		</tr>
+	{% endfor %}
+</table>
+	
+	 
+    </body>
+</html>

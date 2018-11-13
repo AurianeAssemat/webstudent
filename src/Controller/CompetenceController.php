@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Etudiant;
+use App\Entity\Maison;
+use App\Entity\Note;
 use App\Entity\Competence;
+use App\Entity\Professeur;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,7 +61,7 @@ class CompetenceController extends AbstractController
 			);
 		}
 
-		//return new Response('Competence : '.$competence->getNom());
+		//return new Response('Competence : '.$competence->getLibelle());
 		return $this->render('competence/consulter.html.twig', [
             'competence' => $competence,]);
 	}
