@@ -13,8 +13,7 @@
 		<table>
 		{% for m in pMaisons %}
 		<tr>
-			<td><a href="{{ path('maisonConsulter', { 'id': m.id }) }}">{{ m.code }}</a></td>
-			<td>{{ m.nom }}</a></td>
+			<td><a href="{{ path('maisonConsulter', { 'code': m.code }) }}"></a>{{ m.nom }}</td>
 	{% else %}
 		<tr>
 		<td>Aucune maison n'a été trouvée.</td>

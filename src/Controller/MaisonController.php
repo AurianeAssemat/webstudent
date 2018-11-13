@@ -43,23 +43,13 @@ class MaisonController extends AbstractController
 		
 	}
 	
-	public function consulterMaison($id)
-	{
+	public function consulterMaison($code){
+		$repository = $this->getDoctrine()->getRepository(Maison::class);
 		
-		$maison = $this->getDoctrine()
-        ->getRepository(Maison::class)
-        ->find($id);
-
-		if (!$maison) {
-			throw $this->createNotFoundException(
-            'Aucun maison trouvé avec le numéro '.$id
-			);
-		}
-
-		//return new Response('Maison : '.$maison->getNom());
+		$maison = $repository->findOneByCode($code);
 		return $this->render('maison/consulter.html.twig', [
-            'maison' => $maison,]);
-	}
+            'pMaison' => $maison,]);			
+	}	
 	
 	public function listerMaison()
 	{

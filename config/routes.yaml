@@ -17,7 +17,7 @@ maisonAjouter:
     path: /maison/ajouter
     controller: App\Controller\MaisonController::ajouterMaison
 maisonConsulter:
-    path: /maison/consulter/{id}
+    path: /maison/consulter/{code}
     controller: App\Controller\MaisonController::consulterMaison
 maisonLister:
     path: /maison/lister

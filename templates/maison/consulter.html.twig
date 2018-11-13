@@ -4,13 +4,20 @@
         
     </head>
     <body>       
-		<h5>PAGE DE CONSULTATION D'UNE MAISON</h5>
+		<h5>BIENVENUE DANS LA MAISON DES {{ pMaison.nom | upper}}</h5>
  <p>
   <table >
-     <tr><td>Id : </td><td>{{maison.id}} </td></tr>
-	<tr><td>Code : </td><td>{{maison.code}}</td>
-    <tr><td>Nom : </td><td>{{maison.nom}}</td></tr>
-	
+	<tr><td>id</td><td>Nom</td><td>Prénom</td><td>datenaissance</td><td>ville</td></tr>
+	{% for e in pMaison.etudiants %}
+	<tr>
+			<td><a href="{{ path('etudiantConsulter', { 'id': e.id }) }}">{{ e.id }}</a></td>
+			<td><a href="{{ path('etudiantConsulter', { 'id': e.id }) }}">{{ e.nom }}</a></td>
+			<td><a href="{{ path('etudiantConsulter', { 'id': e.id }) }}">{{ e.prenom }}</a></td>
+			<td>{{ e.dtNaissance|date('d/m/Y') }}</td>
+			<td>{{ e.ville}}</td>
+			</tr>
+	   {% endfor %}
+	   
  </table>
 	
 	 
