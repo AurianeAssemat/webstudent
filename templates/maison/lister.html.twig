@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		LISTE DES MAISON</br></br>
+		<table>
+		{% for m in pMaisons %}
+		<tr>
+			<td><a href="{{ path('maisonConsulter', { 'id': m.id }) }}">{{ m.code }}</a></td>
+			<td>{{ m.nom }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucune maison n'a été trouvée.</td>
+		</tr>
+	{% endfor %}
+</table>
+	
+	 
+    </body>
+</html>

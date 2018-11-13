@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		LISTE DES COMPETENCES</br></br>
+		<table>
+		{% for c in pCompetences %}
+		<tr>
+			<td><a href="{{ path('competenceConsulter', { 'id': c.id }) }}">{{ c.code }}</a></td>
+			<td>{{ c.libelle }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucun competence n'a été trouvé.</td>
+		</tr>
+	{% endfor %}
+</table>
+	
+	 
+    </body>
+</html>

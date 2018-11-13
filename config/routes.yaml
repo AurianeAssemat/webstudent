@@ -1,0 +1,36 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+accueil:
+    path: /accueil
+    controller: App\Controller\EtudiantController::index
+etudiantAjouter:
+    path: /etudiant/ajouter
+    controller: App\Controller\EtudiantController::ajouterEtudiant
+etudiantConsulter:
+    path: /etudiant/consulter/{id}
+    controller: App\Controller\EtudiantController::consulterEtudiant
+etudiantLister:
+    path: /etudiant/lister
+    controller: App\Controller\EtudiantController::listerEtudiant
+maisonAjouter:
+    path: /maison/ajouter
+    controller: App\Controller\MaisonController::ajouterMaison
+maisonConsulter:
+    path: /maison/consulter/{id}
+    controller: App\Controller\MaisonController::consulterMaison
+maisonLister:
+    path: /maison/lister
+    controller: App\Controller\MaisonController::listerMaison
+competenceAjouter:
+    path: /competence/ajouter
+    controller: App\Controller\CompetenceController::ajouterCompetence
+competenceConsulter:
+    path: /competence/consulter/{id}
+    controller: App\Controller\CompetenceController::consulterCompetence
+competenceLister:
+    path: /competence/lister
+    controller: App\Controller\CompetenceController::listerCompetence
+etudiantModifier:
+    path: /etudiant/modifier/{id}
+    controller: App\Controller\EtudiantController::modifierEtudiant
