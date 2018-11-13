@@ -8,15 +8,11 @@
  <p>
  
   <table >
-	<tr><td>eleve</td><td>Compétence</td><td>date</td><td>note</td></tr>
-	
-	<tr>
-		<td><a href="{{ path('etudiantConsulter', { 'id': note.etudiant.id }) }}">{{ note.etudiant.nom }} {{ note.etudiant.prenom }}</a></td>
-		<td><a href="{{ path('competenceConsulter', { 'id': note.competence.id }) }}"> {{ note.competence.libelle }}</a></td>
-		<td>{{ note.dateNote|date("d/m/Y") }}</td>
-		<td>{{ note.note }}</td>
-	</tr>
-	   
+	<tr><td>eleve</td> <td><a href="{{ path('etudiantConsulter', { 'id': note.etudiant.id }) }}">{{ note.etudiant.nom }} {{ note.etudiant.prenom }}</a></td></tr>
+	<tr><td>Compétence</td> <td><a href="{{ path('competenceConsulter', { 'id': note.competence.id }) }}"> {{ note.competence.libelle }}</a></td></tr>
+	<tr><td>date</td> <td>{{ note.dateNote|date("d/m/Y") }}</td></tr>
+	<tr><td>note</td> <td>{{ note.note }}</td></tr>
+	 
  </table>
 	
 	 

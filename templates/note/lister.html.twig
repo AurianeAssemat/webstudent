@@ -13,11 +13,11 @@
 		<table>
 		{% for n in pNotes %}
 		<tr>
-			<td>{{ n.competence.libelle }}</td>
+			<td><a href="{{ path('noteConsulter', { 'id': n.id }) }}">{{ n.note }}</a></td>
 			<td>    </td>
 			<td>{{n.etudiant.nom}}</td>
 			<td>    </td>
-			<td><a href="{{ path('noteConsulter', { 'id': n.id }) }}"></a>{{ n.note }}</td>
+			<td>{{ n.competence.libelle }}</td>
 	{% else %}
 		<tr>
 		<td>Aucune note n'a été trouvée.</td>

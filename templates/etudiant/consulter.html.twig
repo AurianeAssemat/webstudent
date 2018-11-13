@@ -31,7 +31,7 @@
 			<td> </td>
 			<td>{{ n.competence.libelle }}</td>
 			<td>    </td>
-			<td><a href="{{ path('noteConsulter', { 'id': n.id }) }}"></a>{{ n.note }}</td>
+			<td><a href="{{ path('noteConsulter', { 'id': n.id }) }}">{{ n.note }}</a></td>
 	{% else %}
 		<tr>
 		<td>Aucune note n'a été trouvée.</td>
