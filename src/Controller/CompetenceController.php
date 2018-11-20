@@ -8,9 +8,13 @@ use App\Entity\Note;
 use App\Entity\Competence;
 use App\Entity\Professeur;
 
+use App\Form\CompetenceType;
+use App\Form\CompetenceModifierType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class CompetenceController extends AbstractController
 {
@@ -24,8 +28,29 @@ class CompetenceController extends AbstractController
         ]);
     }
 	
-	public function ajouterCompetence()
+	public function ajouterCompetence(Request $request)
 	{
+		$competence = new Competence();
+		$form = $this->createForm(CompetenceType::class, $competence);
+		
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+
+            $competence = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($competence);
+            $entityManager->flush();
+   
+	    return $this->render('competence/consulter.html.twig', ['competence' => $competence,]);
+		}
+		else
+        {
+            return $this->render('competence/ajouter.html.twig', array('form' => $form->createView(),));
+		}
+		
+		/* ancien code 06/11/2018 - 13/11/2018
 		
 	// récupère le manager d'entités
         $entityManager = $this->getDoctrine()->getManager();
@@ -45,11 +70,11 @@ class CompetenceController extends AbstractController
         // renvoie vers la vue de consultation de l'étudiant en passant l'objet competence en paramètre
        return $this->render('competence/consulter.html.twig', [
             'competence' => $competence,]);
+			*/
 		
 	}
 	
-	public function consulterCompetence($id)
-	{
+	public function consulterCompetence($id) {
 		
 		$competence = $this->getDoctrine()
         ->getRepository(Competence::class)
@@ -66,12 +91,40 @@ class CompetenceController extends AbstractController
             'competence' => $competence,]);
 	}
 	
-	public function listerCompetence()
-	{
+	public function listerCompetence() {
 		$repository = $this->getDoctrine()->getRepository(Competence::class);
 		$competences = $repository->findAll();
 		return $this->render('competence/lister.html.twig', [
             'pCompetences' => $competences,]);
+	}
+	
+	public function modifierCompetence($id, Request $request){
+
+	//récupération de l'étudiant dont l'id est passé en paramètre
+	$competence = $this->getDoctrine()
+		->getRepository(Competence::class)
+		->find($id);
+
+		if (!$competence) {
+			throw $this->createNotFoundException('Aucun competence trouvé avec le numéro '.$id);
+		}
+		else
+		{
+            $form = $this->createForm(CompetenceModifierType::class, $competence);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                 $competence = $form->getData();
+                 $entityManager = $this->getDoctrine()->getManager();
+                 $entityManager->persist($competence);
+                 $entityManager->flush();
+                 return $this->render('competence/consulter.html.twig', ['competence' => $competence,]);
+           }
+           else{
+                return $this->render('competence/ajouter.html.twig', array('form' => $form->createView(),));
+           }
+        }
 	}
 	
 }

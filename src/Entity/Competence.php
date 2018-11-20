@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,11 +21,27 @@ class Competence
 
     /**
      * @ORM\Column(type="string", length=3)
+      *
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 3,
+     *      minMessage = "Le code doit comporter 3 caractères",
+     *      maxMessage = "Le code doit comporter  3 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $code;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+      *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le libelle doit comporter au moins 2 caractères",
+     *      maxMessage = "Le libelle doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $libelle;
 

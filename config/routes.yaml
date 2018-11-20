@@ -34,15 +34,24 @@ competenceConsulter:
 competenceLister:
     path: /competence/lister
     controller: App\Controller\CompetenceController::listerCompetence
+competenceModifier:
+    path: /competence/modifier/{id}
+    controller: App\Controller\CompetenceController::modifierCompetence
 professeurAjouter:
     path: /professeur/ajouter
     controller: App\Controller\ProfesseurController::ajouterProfesseur
+#professeurCompetenceAjouter:
+#    path: /professeur/ajouterCompetence/{id}
+#    controller: App\Controller\ProfesseurController::ajouterCompetenceProfesseur
 professeurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
 professeurLister:
     path: /professeur/lister
     controller: App\Controller\ProfesseurController::listerProfesseur
+professeurModifier:
+    path: /professeur/modifier/{id}
+    controller: App\Controller\ProfesseurController::modifierProfesseur
 noteConsulter:
     path: /note/consulter/{id}
     controller: App\Controller\NoteController::consulterNote

@@ -39,7 +39,8 @@
 	{% endfor %}
 	
  </table>
-	
+ 
+	<a href="{{ path('etudiantModifier', { 'id': etudiant.id }) }}">Modifier l'étudiant</a> </br>
 	<a href="{{ path('maisonConsulter', { 'code': etudiant.maison.code }) }}">Retour à la liste des étudiants de la maison {{etudiant.maison.nom}}</a> </br>
 	<a href="{{ path('etudiantLister') }}">Retour à la liste des étudiants </a>
 	

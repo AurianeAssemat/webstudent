@@ -2,7 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Etudiant;
+use App\Entity\Professeur;
+use App\Entity\Competence;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,24 +14,19 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class EtudiantModifierType extends AbstractType
+class ProfesseurCompetenceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-       $builder
-            ->add('nom', TextType::class, array('label' => 'Nom de l\'étudiant', 'disabled'=> true))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier étudiant'))
-            ;
-    }
-
-    public function getParent(){
-      return EtudiantType::class;
+        $builder ->add('competences', EntityType::class, array('class' => 'App\Entity\Competence','choice_label' => 'nom' ))
+        ->add('enregistrer', SubmitType::class, array('label' => 'Ajouter au professeur'))
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Etudiant::class,
+            'data_class' => Professeur::class,
         ]);
     }
 }

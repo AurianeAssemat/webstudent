@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,11 +21,27 @@ class Professeur
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le nom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le prenom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le prenom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $prenom;
 

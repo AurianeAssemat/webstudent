@@ -10,6 +10,14 @@
         {% block javascripts %}{% endblock %}
 		
 		Hello les SIO</br>
-		Quelles notes obtiendrez vous au BTS en {{pAnnee}} ?
+		Quelles notes obtiendrez vous au BTS en {{pAnnee}} ? </br>
+		</br>
+		</br>
+		Bienvenue à Poudlard ! </br>
+		</br>
+		<a href="{{ path('maisonLister') }}">Accéder à la liste des maisons</a> </br>
+		<a href="{{ path('competenceLister') }}">Accéder à la liste des competences</a> </br>
+		<a href="{{ path('professeurLister') }}">Accéder à la liste des professeurs</a>
+		
     </body>
 </html>
