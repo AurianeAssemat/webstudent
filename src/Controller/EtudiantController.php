@@ -8,6 +8,7 @@ use App\Entity\Note;
 use App\Entity\Competence;
 use App\Entity\Professeur;
 use App\Form\EtudiantType;
+use App\Form\EtudiantModifierType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -113,7 +114,35 @@ class EtudiantController extends AbstractController
             'pEtudiants' => $etudiants,]);
 	}
 	
-	public function modifierEtudiant($id){
+	public function modifierEtudiant($id, Request $request){
+
+	//récupération de l'étudiant dont l'id est passé en paramètre
+	$etudiant = $this->getDoctrine()
+		->getRepository(Etudiant::class)
+		->find($id);
+
+		if (!$etudiant) {
+			throw $this->createNotFoundException('Aucun etudiant trouvé avec le numéro '.$id);
+		}
+		else
+		{
+            $form = $this->createForm(EtudiantModifierType::class, $etudiant);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                 $etudiant = $form->getData();
+                 $entityManager = $this->getDoctrine()->getManager();
+                 $entityManager->persist($etudiant);
+                 $entityManager->flush();
+                 return $this->render('etudiant/consulter.html.twig', ['etudiant' => $etudiant,]);
+           }
+           else{
+                return $this->render('etudiant/ajouter.html.twig', array('form' => $form->createView(),));
+           }
+        }
+	
+		/* ancien code 06/11/2018 - 13/11/2018
 		
 		//récupération de l'étudiant dont l'id est passé en paramètre
 		$etudiant = $this->getDoctrine()
@@ -157,5 +186,7 @@ class EtudiantController extends AbstractController
             'etudiant' => $etudiant,]);
         }
         }
+		
+		*/
 	}
 }
