@@ -10,6 +10,7 @@
         "symfony/asset": "*",
         "symfony/console": "*",
         "symfony/flex": "^1.1",
+        "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/orm-pack": "^1.0",
         "symfony/twig-bundle": "*",

@@ -7,10 +7,12 @@ use App\Entity\Maison;
 use App\Entity\Note;
 use App\Entity\Competence;
 use App\Entity\Professeur;
+use App\Form\EtudiantType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class EtudiantController extends AbstractController
 {
@@ -29,8 +31,34 @@ class EtudiantController extends AbstractController
         ]);
     }
 	
-	public function ajouterEtudiant()
+	public function ajouterEtudiant(Request $request)
 	{
+		
+		$etudiant = new Etudiant();
+		$form = $this->createForm(EtudiantType::class, $etudiant);
+		/*code du 20/11/2018
+		
+		return $this->render('etudiant/ajouter.html.twig', array('form' => $form->createView(), ));
+		
+		*/
+		
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid()) {
+
+			$etudiant = $form->getData();
+
+			$entityManager = $this->getDoctrine()->getManager();
+			$entityManager->persist($etudiant);
+			$entityManager->flush();
+	   
+			return $this->render('etudiant/consulter.html.twig', ['etudiant' => $etudiant,]);
+		}
+		else{
+			return $this->render('etudiant/ajouter.html.twig', array('form' => $form->createView(),));
+		}
+		
+		/* ancien code 06/11/2018 - 13/11/2018
 		
 	// récupère le manager d'entités
         $entityManager = $this->getDoctrine()->getManager();
@@ -54,7 +82,8 @@ class EtudiantController extends AbstractController
 
         // renvoie vers la vue de consultation de l'étudiant en passant l'objet etudiant en paramètre
        return $this->render('etudiant/consulter.html.twig', [
-            'etudiant' => $etudiant,]);
+            'etudiant' => $etudiant,]); 
+			*/
 		
 	}
 	
