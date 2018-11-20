@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EtudiantRepository")
@@ -20,11 +21,27 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le nom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le prenom doit comporter au moins 2 caractères",
+     *      maxMessage = "Le prenom doit comporter au plus 50 caractères"
+     *    )
+     * @Assert\NotBlank()
      */
     private $prenom;
 
@@ -35,6 +52,13 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "La ville doit comporter au moins 2 caractères",
+     *      maxMessage = "La ville doit comporter au plus 50 caractères"
+     *    )
      */
     private $ville;
 
@@ -45,11 +69,25 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le code postal doit comporter 5 caractères",
+     *      maxMessage = "Le code postal doit comporter 5 caractères"
+     *    )
      */
     private $rue;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "La rue doit comporter au moins 2 caractères",
+     *      maxMessage = "La rue doit comporter au plus 50 caractères"
+     *    )
      */
     private $surnom;
 
@@ -60,6 +98,14 @@ class Etudiant
 
     /**
      * @ORM\Column(type="string", length=1, nullable=true)
+     *
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 1,
+     *      minMessage = "Le sexe doit comporter 1 caractère",
+     *      maxMessage = "Le sexe doit comporter 1 caractère"
+     *    )
+     * @Assert\NotBlank()
      */
     private $Sexe;
 
