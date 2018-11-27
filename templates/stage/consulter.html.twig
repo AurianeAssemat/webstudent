@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		
+		<h5>PAGE DE CONSULTATION D'UN STAGE</h5>
+ <p>
+  <table >
+     <tr><td>Id : </td><td>{{stage.id}} </td></tr>
+	 <tr><td>Etudiant concerné:</td><td>{{stage.etudiant.nom}} {{stage.etudiant.prenom}}</td></tr>
+	<tr><td>Date de début : </td><td>{{stage.dateDebut|date("d/m/Y")}}</td></tr>
+		  <tr><td>date de fin : </td><td>{{stage.dateFin|date("d/m/Y")}}</td></tr>
+	   <tr><td>Lieu: </td><td>{{stage.entreprise.nom}}, {{stage.entreprise.numrue}} {{stage.entreprise.rue}}, {{stage.entreprise.copos}} {{stage.entreprise.ville}}</td></tr>
+	   <tr><td>Objet du stage :</td><td>{{stage.objet}}</td></tr>
+	   <tr><td>Compétences attendues :</td></tr>
+	   {% for c in stage.competences %}
+		<tr>
+			<td>     </td>
+			<td><a href="{{ path('competenceConsulter', { 'id': c.id }) }}">{{ c.libelle }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucune competence attendue.</td>
+		</tr>
+	{% endfor %}
+	
+ </table>
+	
+	<a href="{{ path('stageModifier', { 'id': stage.id }) }}">Modifier le stage</a> </br>
+	<a href="{{ path('stageLister') }}">Retour à la liste des stages</a>
+	 
+    </body>
+</html>

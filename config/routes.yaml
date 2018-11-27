@@ -4,6 +4,7 @@
 accueil:
     path: /accueil
     controller: App\Controller\EtudiantController::index
+#Etudiant
 etudiantAjouter:
     path: /etudiant/ajouter
     controller: App\Controller\EtudiantController::ajouterEtudiant
@@ -16,6 +17,7 @@ etudiantLister:
 etudiantModifier:
     path: /etudiant/modifier/{id}
     controller: App\Controller\EtudiantController::modifierEtudiant
+#Maison
 maisonAjouter:
     path: /maison/ajouter
     controller: App\Controller\MaisonController::ajouterMaison
@@ -25,6 +27,7 @@ maisonConsulter:
 maisonLister:
     path: /maison/lister
     controller: App\Controller\MaisonController::listerMaison
+#Competence
 competenceAjouter:
     path: /competence/ajouter
     controller: App\Controller\CompetenceController::ajouterCompetence
@@ -37,6 +40,7 @@ competenceLister:
 competenceModifier:
     path: /competence/modifier/{id}
     controller: App\Controller\CompetenceController::modifierCompetence
+#Professeur
 professeurAjouter:
     path: /professeur/ajouter
     controller: App\Controller\ProfesseurController::ajouterProfesseur
@@ -52,9 +56,23 @@ professeurLister:
 professeurModifier:
     path: /professeur/modifier/{id}
     controller: App\Controller\ProfesseurController::modifierProfesseur
+#Note
 noteConsulter:
     path: /note/consulter/{id}
     controller: App\Controller\NoteController::consulterNote
 noteLister:
     path: /note/lister
     controller: App\Controller\NoteController::listerNote
+#Stage
+stageAjouter:
+    path: /stage/ajouter
+    controller: App\Controller\StageController::ajouterStage
+stageConsulter:
+    path: /stage/consulter/{id}
+    controller: App\Controller\StageController::consulterStage
+stageLister:
+    path: /stage/lister
+    controller: App\Controller\StageController::listerStage
+stageModifier:
+    path: /stage/modifier/{id}
+    controller: App\Controller\StageController::modifierStage

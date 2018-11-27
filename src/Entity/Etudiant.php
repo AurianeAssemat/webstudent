@@ -119,9 +119,15 @@ class Etudiant
      */
     private $notes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="etudiant")
+     */
+    private $stages;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->stages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,6 +280,37 @@ class Etudiant
             // set the owning side to null (unless already changed)
             if ($note->getEtudiant() === $this) {
                 $note->setEtudiant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stage[]
+     */
+    public function getStages(): Collection
+    {
+        return $this->stages;
+    }
+
+    public function addStage(Stage $stage): self
+    {
+        if (!$this->stages->contains($stage)) {
+            $this->stages[] = $stage;
+            $stage->setEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stage $stage): self
+    {
+        if ($this->stages->contains($stage)) {
+            $this->stages->removeElement($stage);
+            // set the owning side to null (unless already changed)
+            if ($stage->getEtudiant() === $this) {
+                $stage->setEtudiant(null);
             }
         }
 

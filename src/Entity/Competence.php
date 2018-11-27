@@ -60,10 +60,16 @@ class Competence
      */
     private $notes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="competences")
+     */
+    private $stages;
+
     public function __construct()
     {
         $this->professeurs = new ArrayCollection();
         $this->notes = new ArrayCollection();
+        $this->stages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +165,34 @@ class Competence
             if ($note->getCompetence() === $this) {
                 $note->setCompetence(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stage[]
+     */
+    public function getStages(): Collection
+    {
+        return $this->stages;
+    }
+
+    public function addStage(Stage $stage): self
+    {
+        if (!$this->stages->contains($stage)) {
+            $this->stages[] = $stage;
+            $stage->addCompetence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stage $stage): self
+    {
+        if ($this->stages->contains($stage)) {
+            $this->stages->removeElement($stage);
+            $stage->removeCompetence($this);
         }
 
         return $this;
