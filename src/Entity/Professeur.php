@@ -49,7 +49,7 @@ class Professeur
      * @ORM\Column(type="date", nullable=true)
      */
     private $dtNaissance;
-
+	
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Competence", mappedBy="professeurs")
      */
