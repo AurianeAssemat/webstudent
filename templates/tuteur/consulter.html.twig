@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		
+		<h5>PAGE DE CONSULTATION D'UN TUTEUR</h5>
+ <p>
+  <table >
+     <tr><td>Id : </td><td>{{tuteur.id}} </td></tr>
+	 <tr><td>Nom :</td><td>{{tuteur.nom}}</td></tr>
+	<tr><td>Prenom : </td><td>{{tuteur.prenom}}</td></tr>
+		  <tr><td>Mail : </td><td>{{tuteur.mail}}</td></tr>
+	   <tr><td>Telephone : </td><td>{{tuteur.telephone}}</td></tr>
+	   
+	   <tr><td> </td><td>Stagiaires Accueillis </td><td>Objet du stage</td></tr>
+	   
+	   {% for s in tuteur.stages %}
+		<tr>
+			<td> </td>
+			<td>{{ s.etudiant.nom }}</td>
+			<td><a href="{{ path('stageConsulter', { 'id': s.id }) }}">{{ s.objet }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucun stagiaire n'a été trouvé.</td>
+		</tr>
+	{% endfor %}
+	   
+	
+ </table>
+	
+	<a href="{{ path('tuteurModifier', { 'id': tuteur.id }) }}">Modifier le tuteur</a> </br>
+	<a href="{{ path('tuteurLister') }}">Retour à la liste des tuteurs</a>
+	 
+    </body>
+</html>

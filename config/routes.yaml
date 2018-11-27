@@ -76,3 +76,29 @@ stageLister:
 stageModifier:
     path: /stage/modifier/{id}
     controller: App\Controller\StageController::modifierStage
+#Entreprise
+entrepriseAjouter:
+    path: /entreprise/ajouter
+    controller: App\Controller\EntrepriseController::ajouterEntreprise
+entrepriseConsulter:
+    path: /entreprise/consulter/{id}
+    controller: App\Controller\EntrepriseController::consulterEntreprise
+entrepriseLister:
+    path: /entreprise/lister
+    controller: App\Controller\EntrepriseController::listerEntreprise
+entrepriseModifier:
+    path: /entreprise/modifier/{id}
+    controller: App\Controller\EntrepriseController::modifierEntreprise
+#Tuteur
+tuteurAjouter:
+    path: /tuteur/ajouter
+    controller: App\Controller\TuteurController::ajouterTuteur
+tuteurConsulter:
+    path: /tuteur/consulter/{id}
+    controller: App\Controller\TuteurController::consulterTuteur
+tuteurLister:
+    path: /tuteur/lister
+    controller: App\Controller\TuteurController::listerTuteur
+tuteurModifier:
+    path: /tuteur/modifier/{id}
+    controller: App\Controller\TuteurController::modifierTuteur

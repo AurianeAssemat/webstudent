@@ -20,25 +20,23 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class StageModifierType extends AbstractType
+class TuteurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDebut', DateTimeType::class, array('label' => 'Date de début', 'disabled'=> true))
-            ->add('dateFin', DateTimeType::class, array('label' => 'Date de fin', 'disabled'=> true))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier stage'))
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('mail', TextType::class)
+            ->add('telephone', TextType::class)
+			->add('enregistrer', SubmitType::class, array('label' => 'Nouveau tuteur'))
         ;
-    }
-	
-	public function getParent(){
-      return StageType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Stage::class,
+            'data_class' => Tuteur::class,
         ]);
     }
 }

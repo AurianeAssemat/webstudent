@@ -20,25 +20,24 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class StageModifierType extends AbstractType
+class EntrepriseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDebut', DateTimeType::class, array('label' => 'Date de début', 'disabled'=> true))
-            ->add('dateFin', DateTimeType::class, array('label' => 'Date de fin', 'disabled'=> true))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier stage'))
+            ->add('nom', TextType::class)
+            ->add('numrue', IntegerType::class)
+            ->add('rue', TextType::class)
+            ->add('copos', TextType::class)
+            ->add('ville', TextType::class)
+			->add('enregistrer', SubmitType::class, array('label' => 'Nouvelle entreprise'))
         ;
-    }
-	
-	public function getParent(){
-      return StageType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Stage::class,
+            'data_class' => Entreprise::class,
         ]);
     }
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		
+		<h5>PAGE DE CONSULTATION D'UNE ENTREPRISE</h5>
+ <p>
+  <table >
+     <tr><td>Id : </td><td>{{entreprise.id}} </td></tr>
+	 <tr><td>Nom :</td><td>{{entreprise.nom}}</td></tr>
+	<tr><td>Adresse : </td><td>{{entreprise.numrue}} {{entreprise.rue}}</td></tr>
+		  <tr><td>Code Postal : </td><td>{{entreprise.copos}}</td></tr>
+	   <tr><td>Ville : </td><td>{{entreprise.ville}}</td></tr>
+	   
+	   <tr><td> </td><td>Stagiaires Accueillis </td><td>Objet du stage</td></tr>
+	   
+	   {% for s in entreprise.stages %}
+		<tr>
+			<td> </td>
+			<td>{{ s.etudiant.nom }}</td>
+			<td><a href="{{ path('stageConsulter', { 'id': s.id }) }}">{{ s.objet }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucun stagiaire n'a été trouvé.</td>
+		</tr>
+	{% endfor %}
+	   
+	
+ </table>
+	
+	<a href="{{ path('entrepriseModifier', { 'id': entreprise.id }) }}">Modifier l'entreprise</a> </br>
+	<a href="{{ path('entrepriseLister') }}">Retour à la liste des entreprises</a>
+	 
+    </body>
+</html>

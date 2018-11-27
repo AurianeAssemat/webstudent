@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		
+		LISTE DES ENTREPRISES</br></br>
+		<table>
+		{% for e in pEntreprises %}
+		<tr>
+			<td><a href="{{ path('entrepriseConsulter', { 'id': e.id }) }}">{{ e.id }}</a></td>
+			<td>{{ e.nom }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucune entreprise n'a été trouvée.</td>
+		</tr>
+	{% endfor %}
+</table>
+	
+	
+	<a href="{{ path('entrepriseAjouter') }}">Ajouter une entreprise</a> </br>
+	
+	<a href="{{ path('accueil') }}">Retour à l'accueil</a>
+	 
+    </body>
+</html>

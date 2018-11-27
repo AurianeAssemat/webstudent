@@ -38,8 +38,22 @@
 		</tr>
 	{% endfor %}
 	
+	<tr><td> </td><td>Stages </td><td>Objet du stage</td></tr>
+	   
+	   {% for s in etudiant.stages %}
+		<tr>
+			<td> </td>
+			<td>{{ s.entreprise.nom }}</td>
+			<td><a href="{{ path('stageConsulter', { 'id': s.id }) }}">{{ s.objet }}</a></td>
+	{% else %}
+		<tr>
+		<td>Aucun stage n'a été trouvé.</td>
+		</tr>
+	{% endfor %}
+	
  </table>
- 
+	</br>
+	</br>
 	<a href="{{ path('etudiantModifier', { 'id': etudiant.id }) }}">Modifier l'étudiant</a> </br>
 	<a href="{{ path('maisonConsulter', { 'code': etudiant.maison.code }) }}">Retour à la liste des étudiants de la maison {{etudiant.maison.nom}}</a> </br>
 	<a href="{{ path('etudiantLister') }}">Retour à la liste des étudiants </a>
